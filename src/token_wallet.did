@@ -1,0 +1,13 @@
+type WalletError = variant {
+    InsufficientBalance;
+    Unauthorized;
+    InvalidAmount;
+    TransferFailed;
+};
+
+service : {
+    "send_tokens": (principal, nat64) -> (variant { Ok: null; Err: WalletError });
+    "get_balance": (principal) -> (nat64) query;
+    "receive_tokens": (principal, nat64) -> (variant { Ok: null; Err: WalletError });
+    "mint_tokens": (principal, nat64) -> (variant { Ok: null; Err: WalletError });
+}
